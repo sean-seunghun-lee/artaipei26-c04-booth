@@ -566,6 +566,8 @@ h2{font-size:12px;font-weight:600;margin:0 0 8px;letter-spacing:.04em;color:var(
   const fmt = v => (Math.round(v*10)/10).toString();
   function showSelected() {
     if (!selected) { selBox.innerHTML = '<span class="empty">Click a wall panel or artwork in the 3D view.</span>'; return; }
+    // the details sit below the artwork list, so bring them into view
+    selBox.scrollIntoView({block:'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
     const a = selected.userData.art;
     if (a) {
       selBox.innerHTML =
