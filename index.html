@@ -597,7 +597,7 @@ h2{font-size:12px;font-weight:600;margin:0 0 8px;letter-spacing:.04em;color:var(
            <dt>Bottom / top</dt><dd>${fmt(a.cy - a.h/2)} / ${fmt(a.cy + a.h/2)} cm</dd>
            <dt>Horizontal centre</dt><dd>${a.along}</dd>
          </dl>${a.sizeNote ? `<div class="artist" style="margin-top:8px">${a.sizeNote}</div>` : ''}
-         ${APP_IDS[a.id] ? `<a class="app-link" href="${APP_URL + APP_IDS[a.id]}" target="_blank" rel="noopener">View in Art Taipei app ↗</a>` : ''}`;
+         ${APP_IDS[a.id] ? `<a class="app-link" href="${APP_URL + APP_IDS[a.id]}" target="_blank" rel="noopener">View More</a>` : ''}`;
       return;
     }
     const p = selected.userData.panel;
