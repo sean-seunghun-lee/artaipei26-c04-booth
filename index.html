@@ -69,6 +69,8 @@ h2{font-size:12px;font-weight:600;margin:0 0 8px;letter-spacing:.04em;color:var(
 .sel .id{font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--accent)}
 .sel .empty{color:var(--muted)}
 .sel .artist{color:var(--muted);font-size:12.5px;margin-top:2px}
+.app-link{display:inline-block;margin-top:12px;font:500 13px/1 var(--font-body);color:var(--surface);background:var(--fg);padding:9px 12px;border-radius:6px;text-decoration:none}
+.app-link:hover{background:var(--accent)}
 .works{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 .works button{width:100%;display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:center;text-align:left;font:inherit;color:var(--fg);background:transparent;border:1px solid transparent;padding:6px;border-radius:5px;cursor:pointer}
 .works button:hover{background:var(--accent-soft)}
@@ -407,6 +409,16 @@ h2{font-size:12px;font-weight:600;margin:0 0 8px;letter-spacing:.04em;color:var(
   moveTo('JY-3', 'Partition, west face (P1–P3)', 'Partition west', V(495, 132.25, 217.71), V(-1, 0, 0), '217.71 cm from north end');
   moveTo('YH-1', 'North wall (N3–N5)', 'North wall', V(291.23, 160, 0), V(0, 0, 1), '291.23 cm from west end');
   moveTo('YH-2', 'North wall (N3–N5)', 'North wall', V(408.26, 160, 0), V(0, 0, 1), '408.26 cm from west end');
+  // Links to each work's page in the PBG ART TAIPEI 2026 web app (ids from its data.json)
+  const APP_URL = 'https://sean-seunghun-lee.github.io/pbg-art-taipei-2026-app/#/work/';
+  const APP_IDS = {
+    'MH-1':'moon-hyeongtae-3', 'MH-2':'moon-hyeongtae-2', 'MH-3':'moon-hyeongtae-1',
+    'JK-1':'jae-yong-kim-1', 'JK-2':'jae-yong-kim-2', 'CH-Ⅰ':'choi-hyeji-1', 'CH-Ⅱ':'choi-hyeji-1',
+    'YJ-1':'yi-yi-jeong-eun-1', 'YJ-2':'yi-yi-jeong-eun-3', 'YJ-3':'yi-yi-jeong-eun-2',
+    'JY-1':'jin-young-1', 'JY-2':'jin-young-3', 'JY-3':'jin-young-4',
+    'SO-1':'im-hari-1', 'SO-2':'im-hari-2', 'SO-3':'lee-yelin-1', 'SO-4':'lee-anon-1', 'SO-5':'lee-anon-2',
+    'YH-1':'yuya-hashizume-1', 'YH-2':'yuya-hashizume-3',
+  };
   const artMeshes = [];
   const texLoader = new THREE.TextureLoader();
   const canvasSideMat = new THREE.MeshStandardMaterial({color:0xf1eee8, roughness:0.9});
@@ -584,7 +596,8 @@ h2{font-size:12px;font-weight:600;margin:0 0 8px;letter-spacing:.04em;color:var(
            <dt>Centre height</dt><dd>${fmt(a.cy)} cm</dd>
            <dt>Bottom / top</dt><dd>${fmt(a.cy - a.h/2)} / ${fmt(a.cy + a.h/2)} cm</dd>
            <dt>Horizontal centre</dt><dd>${a.along}</dd>
-         </dl>${a.sizeNote ? `<div class="artist" style="margin-top:8px">${a.sizeNote}</div>` : ''}`;
+         </dl>${a.sizeNote ? `<div class="artist" style="margin-top:8px">${a.sizeNote}</div>` : ''}
+         ${APP_IDS[a.id] ? `<a class="app-link" href="${APP_URL + APP_IDS[a.id]}" target="_blank" rel="noopener">View in Art Taipei app ↗</a>` : ''}`;
       return;
     }
     const p = selected.userData.panel;
